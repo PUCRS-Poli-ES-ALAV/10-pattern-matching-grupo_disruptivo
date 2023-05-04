@@ -4,7 +4,7 @@ import time
 def benchmark(f, print_args, print_res, *fargs):
     # Run function with arguments and record time
     time_start = time.time_ns()
-    (res, num_iter) = f(*fargs)
+    (res, (num_iter, num_ints)) = f(*fargs)
     time_elapsed = (time.time_ns() - time_start) / 1e6
     # Print results
     print(f'{f.__name__}', end='')
@@ -15,9 +15,9 @@ def benchmark(f, print_args, print_res, *fargs):
     if print_res:
         print(f' = {res}', end='')
 
-    print(f' ({time_elapsed} ms, {num_iter} iters)')
+    print(f' ({time_elapsed} ms, {num_iter} iters, {num_ints} insts)')
     return res
 
 
 if __name__ == "__main__":
-    benchmark(lambda x: (x + 1, 1), 2)
+    benchmark(lambda x: (x + 1, 1), True, True, 2)

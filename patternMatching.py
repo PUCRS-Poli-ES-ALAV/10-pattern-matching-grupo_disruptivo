@@ -4,7 +4,7 @@ from typing import Tuple
 from benchmark import benchmark
 
 
-def patternMatching(s1: str, s2:str) -> Tuple[int, int]:
+def match_str(s1: str, s2:str) -> Tuple[int, Tuple[int, int]]:
     s2_len = len(s2)
     num_iter = 0 
     # Previous assignment.
@@ -26,14 +26,14 @@ def patternMatching(s1: str, s2:str) -> Tuple[int, int]:
     return (-1, (num_iter, num_inst))
 
 
-def stringGeneration(size):
+def gen_str(size):
     return ''.join(random.choice(string.ascii_uppercase) for _ in range(size))
 
 
 def main(): 
-    s1 = stringGeneration(100_000)
-    s2 = stringGeneration(10)   
-    index = benchmark(patternMatching, False, True, s1, s2)
+    s1 = gen_str(100_000)
+    s2 = gen_str(10)   
+    index = benchmark(match_str, False, True, s1, s2)
 
     if index == -1:
         print (s2 + ' not found')
