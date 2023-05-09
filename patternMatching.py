@@ -3,7 +3,7 @@ import string
 from typing import Tuple
 from benchmark import benchmark
 
-NUM_BENCH_ITER = 50
+NUM_BENCH_ITER = 10
 SIZE_BENCH_S1 = 500_000
 SIZE_BENCH_S2 = 20_000
 
@@ -55,12 +55,14 @@ def gen_str(size):
 
 
 def main():
+    fileWrite = open ('results.txt', 'w')
     for i in range(NUM_BENCH_ITER):
         s1 = gen_str(SIZE_BENCH_S1)
         s2 = gen_str(SIZE_BENCH_S2)
         res = []
         res.append(benchmark(match_bf, False, True, s1, s2))
         res.append(benchmark(match_rabin_karp, False, True, s1, s2))
+        
 
         if (res[1:] != res[:-1]):
             print('error: conflicting results')

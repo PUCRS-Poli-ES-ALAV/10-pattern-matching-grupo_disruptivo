@@ -15,7 +15,7 @@ def benchmark(f, print_args, print_res, *fargs):
     if print_res:
         print(f' = {res}', end='')
 
-    print(f' ({time_elapsed} ms, {num_iter} iters, {num_ints} insts)')
+    print(f'{time_elapsed};{num_iter};{num_ints}')
     return res
 
 
